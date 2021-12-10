@@ -37,5 +37,51 @@ public class WorkOrderController {
 
         return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "查询成功", pageInfo);
     }
-	
+
+    @DeleteMapping(value = "/{id}")
+    @ApiOperation("删除")
+    public Object remove(@PathVariable long id) {
+        int result = workOrderService.remove(id);
+
+        if (result > 0) {
+            return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "删除成功");
+        } else {
+            return BaseResponseUtil.constructResponse(BaseResponseUtil.FAILED, "删除失败");
+        }
+    }
+
+
+    @PostMapping(value = "/save")
+    @ApiOperation("保存")
+    public Object save(@RequestBody WorkOrder entity) {
+        int result = workOrderService.save(entity);
+
+        if (result > 0) {
+            return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "保存成功", entity.getId());
+        } else {
+            return BaseResponseUtil.constructResponse(BaseResponseUtil.FAILED, "保存失败", result);
+        }
+    }
+
+    @PutMapping(value = "/update")
+    @ApiOperation("修改")
+    public Object update(@RequestBody WorkOrder entity) {
+        int result = workOrderService.update(entity);
+
+        if (result > 0) {
+            return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "修改成功", entity.getId());
+        } else {
+            return BaseResponseUtil.constructResponse(BaseResponseUtil.FAILED, "修改失败");
+        }
+    }
+
+
+    @GetMapping(value = "/{id}/detail")
+    @ApiOperation("详情")
+    public Object detail(@PathVariable long id) {
+        WorkOrder entity = workOrderService.getById(id);
+        return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "查询成功", entity);
+    }
+
+
 }
