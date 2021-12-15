@@ -2,14 +2,16 @@ package com.helpdesk.entity;
 
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Builder;
 import lombok.Data;
-
+import org.apache.ibatis.type.JdbcType;
 
 
 @Data
-@Builder
+@TableName(value = "work_order")
 public class WorkOrder {
     private static final long serialVersionUID = 1L;
 
@@ -49,11 +51,14 @@ public class WorkOrder {
     /**
      * 问题
      */
-    private String question;
+    @TableField(jdbcType = JdbcType.VARCHAR)
+    private String questions;
 
 
     /**
      * 描述
      */
     private String content;
+
+
 }

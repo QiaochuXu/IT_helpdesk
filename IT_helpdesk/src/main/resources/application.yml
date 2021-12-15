@@ -7,3 +7,19 @@ spring:
     url: jdbc:mysql://47.105.35.98:3306/cloud_code1?serverTimezone=GMT%2B8
     username: root
     password: 123456
+
+
+mybatis-plus:
+  #项目启动会检查xml配置存在(只在开发时候打开)
+  check-config-location: true
+  configuration:
+    # 是否开启自动驼峰命名规则（camel case）映射，即从经典数据库列名 A_COLUMN（下划线命名） 到经典 Java 属性名 aColumn（驼峰命名） 的类似映射
+    map-underscore-to-camel-case: true
+    # 这个配置会将执行的sql打印出来，在开发或测试的时候可以用
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      #表名下划线命名默认true
+      table-underline: true
+      #id类型
+      id-type: auto

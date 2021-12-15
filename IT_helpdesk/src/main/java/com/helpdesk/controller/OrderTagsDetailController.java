@@ -3,26 +3,26 @@ package com.helpdesk.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.helpdesk.common.BaseResponseUtil;
-import com.helpdesk.entity.WorkOrder;
-import com.helpdesk.param.WorkOrderParam;
-import com.helpdesk.service.WorkOrderService;
+import com.helpdesk.entity.OrderTagsDetail;
+import com.helpdesk.param.OrderTagsDetailParam;
+import com.helpdesk.service.OrderTagsDetailService;
+import org.springframework.web.bind.annotation.*;
+
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
 
 
 
 @RestController
-@RequestMapping("/api/work")
-@Api(tags = "工单")
-public class WorkOrderController {
-
+@RequestMapping("/api/orderTagsDetail")
+@Api(tags = "标签和工单关联")
+public class OrderTagsDetailController {
     @Autowired
-    private WorkOrderService workOrderService;
+    private OrderTagsDetailService orderTagsDetailService;
 
     @GetMapping("page")
     @ApiOperation("分页")
@@ -32,9 +32,8 @@ public class WorkOrderController {
             @ApiImplicitParam(value = "排序字段", paramType = "query", dataType = "String"),
             @ApiImplicitParam(value = "排序方式，可选值(asc、desc)", paramType = "query", dataType = "String")
     })
-    public Object page(WorkOrderParam queryParam) {
-        // 分页查询
-        PageInfo<WorkOrder> pageInfo = workOrderService.pageQuery(queryParam);
+    public Object page(OrderTagsDetailParam queryParam) {
+        PageInfo pageInfo = orderTagsDetailService.pageQuery(queryParam);
 
         return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "查询成功", pageInfo);
     }
@@ -42,7 +41,7 @@ public class WorkOrderController {
     @DeleteMapping(value = "/{id}")
     @ApiOperation("删除")
     public Object remove(@PathVariable long id) {
-        int result = workOrderService.remove(id);
+        int result = orderTagsDetailService.remove(id);
 
         if (result > 0) {
             return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "删除成功");
@@ -54,8 +53,8 @@ public class WorkOrderController {
 
     @PostMapping(value = "/save")
     @ApiOperation("保存")
-    public Object save(@RequestBody WorkOrder entity) {
-        int result = workOrderService.save(entity);
+    public Object save(@RequestBody OrderTagsDetail entity) {
+        int result = orderTagsDetailService.save(entity);
 
         if (result > 0) {
             return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "保存成功", entity.getId());
@@ -66,8 +65,8 @@ public class WorkOrderController {
 
     @PutMapping(value = "/update")
     @ApiOperation("修改")
-    public Object update(@RequestBody WorkOrder entity) {
-        int result = workOrderService.update(entity);
+    public Object update(@RequestBody OrderTagsDetail entity) {
+        int result = orderTagsDetailService.update(entity);
 
         if (result > 0) {
             return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "修改成功", entity.getId());
@@ -80,7 +79,7 @@ public class WorkOrderController {
     @GetMapping(value = "/{id}/detail")
     @ApiOperation("详情")
     public Object detail(@PathVariable long id) {
-        WorkOrder entity = workOrderService.getById(id);
+        OrderTagsDetail entity = orderTagsDetailService.getById(id);
         return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "查询成功", entity);
     }
 

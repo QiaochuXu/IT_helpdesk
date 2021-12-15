@@ -44,12 +44,12 @@ public class WorkOrderServiceImpl implements WorkOrderService {
         if (id == null || id == 0L) {
             // 自己定义的异常方法
         }
-
         return workOrderMapper.selectById(id);
     }
 
     @Override
     public PageInfo<WorkOrder> pageQuery(WorkOrderParam queryParam) {
+        // pn 页数 1 ps 值 10
         return PageHelper.startPage(queryParam.getPn(), queryParam.getPs())
                 .doSelectPageInfo(() -> workOrderMapper.listQuery(queryParam));
     }
