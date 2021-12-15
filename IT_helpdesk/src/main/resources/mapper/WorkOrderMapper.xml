@@ -22,6 +22,9 @@
             <if test="checkId != null and checkId > -1">
                 and work_order.check_user_id = #{checkId}
             </if>
+            <if test="workStatus != null">
+                and work_order.work_status = #{workStatus}
+            </if>
         </where>
 
     </select>

@@ -1,5 +1,6 @@
 package com.helpdesk.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
@@ -45,5 +46,6 @@ public class User {
 
 
     @ApiModelProperty("组织name")
+    @TableField(exist = false)
     private String orgName;
 }

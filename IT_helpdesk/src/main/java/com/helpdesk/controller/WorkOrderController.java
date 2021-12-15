@@ -52,7 +52,7 @@ public class WorkOrderController {
     }
 
 
-    @PostMapping(value = "/save")
+    @PostMapping
     @ApiOperation("保存")
     public Object save(@RequestBody WorkOrder entity) {
         int result = workOrderService.save(entity);
@@ -64,7 +64,7 @@ public class WorkOrderController {
         }
     }
 
-    @PutMapping(value = "/update")
+    @PutMapping
     @ApiOperation("修改")
     public Object update(@RequestBody WorkOrder entity) {
         int result = workOrderService.update(entity);

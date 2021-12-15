@@ -15,6 +15,10 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 
 @RestController
 @RequestMapping("/api/user")
@@ -93,15 +97,16 @@ public class UserController {
 
     @GetMapping(value = "/{id}/detail")
     @ApiOperation("详情")
-    public Object detail(@PathVariable long id) {
+    public Object detail(@PathVariable long id, @RequestHeader String token) {
         User entity = userService.getById(id);
         return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "查询成功", entity);
     }
 
-
-	@PostMapping(value = "/logout")
+    @PostMapping(value = "/logout")
     @ApiOperation("退出")
     public Object logOut() {
         return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "退出成功");
     }
+
+
 }

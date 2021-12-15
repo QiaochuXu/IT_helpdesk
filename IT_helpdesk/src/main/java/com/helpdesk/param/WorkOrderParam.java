@@ -30,5 +30,7 @@ public class WorkOrderParam {
      */
     private Integer checkId;
 
+    private Integer workStatus;
+
 
 }

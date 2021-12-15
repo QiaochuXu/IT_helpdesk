@@ -1,12 +1,21 @@
-
 spring:
   application:
     name: mall-store
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://47.105.35.98:3306/cloud_code1?serverTimezone=GMT%2B8
-    username: root
-    password: 123456
+    druid:
+      #MySQL
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://47.96.20.181:3306/help_desk?serverTimezone=GMT%2B8&useUnicode=yes&characterEncoding=UTF-8&useSSL=false
+      username: root
+      password: 123456
+      initial-size: 10
+      max-active: 100
+      min-idle: 10
+      max-wait: 6000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
 
 
 mybatis-plus:

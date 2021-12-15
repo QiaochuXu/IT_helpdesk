@@ -72,6 +72,11 @@ public class WorkOrder {
     @TableField(exist = false)
     private String userName;
 
+    private Integer checkUserId;
+
+    @TableField(exist = false)
+    private String checkName;
+
 
 
 

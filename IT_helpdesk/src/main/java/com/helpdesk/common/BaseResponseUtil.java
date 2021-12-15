@@ -18,7 +18,7 @@ public class BaseResponseUtil<T>  extends Object{
     /**
      * 请求成功
      */
-    public static final int SUCCESS = 1;
+    public static final int SUCCESS = 20000;
 
     /**
      * 请求异常
@@ -49,5 +49,12 @@ public class BaseResponseUtil<T>  extends Object{
         jo.put("data", data);
         this.jo = jo;
         return this;
+    }
+
+    public static Map<String, Object> constructResponseValid(int code, Object data) {
+        Map<String, Object> jo = new HashMap<>(2);
+        jo.put("code", code);
+        jo.put("data", data);
+        return jo;
     }
 }
