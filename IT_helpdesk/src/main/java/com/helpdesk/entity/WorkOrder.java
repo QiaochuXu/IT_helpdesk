@@ -63,11 +63,13 @@ public class WorkOrder {
     /**
      * 标签名称
      */
+    @TableField(exist = false)
     private String tagName;
 
     /**
      * 用户名称
      */
+    @TableField(exist = false)
     private String userName;
 
 

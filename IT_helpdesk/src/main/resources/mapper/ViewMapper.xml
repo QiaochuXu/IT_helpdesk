@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.helpdesk.mapper.ViewMapper">
+
+    <select id="listQuery" parameterType="com.helpdesk.param.ViewParam" resultType="com.helpdesk.entity.View">
+        SELECT view.* , user.name as user_name , usert.name as view_user_name
+        FROM view
+        left join user on view.user_id = user.id
+        left join user as usert on view.view_user_id = usert.id
+        <where>
+            1=1
+            <if test="userId != null and userId > -1">
+                and view.user_id = #{userId}
+            </if>
+        </where>
+
+    </select>
+
+
+    <select id="listWorkIds" parameterType="com.helpdesk.param.ViewParam" resultType="java.lang.Long">
+        select view_work.work_id
+        from view
+                 left join user on view.user_id = user.id
+                 right join view_work on view.id = view_work.view_id
+        <where>
+            1=1
+            <if test="id != null and id > -1">
+                and view.id = #{id}
+            </if>
+        </where>
+    </select>
+
+
+</mapper>
