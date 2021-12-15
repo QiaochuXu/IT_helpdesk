@@ -28,7 +28,12 @@ public class UserController {
     @ApiOperation("用户登陆")
     public Object login(@RequestBody UserParam entity) {
         User login = userService.login(entity);
-        return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "用户登陆成功", login);
+        String token = UUID.randomUUID().toString().replace("-", "");
+        Map<String,Object> result = new HashMap<>();
+        result.put("user", login);
+        result.put("token", token);
+
+        return BaseResponseUtil.constructResponseValid(BaseResponseUtil.SUCCESS, result);
     }
 
 
@@ -94,4 +99,9 @@ public class UserController {
     }
 
 
+	@PostMapping(value = "/logout")
+    @ApiOperation("退出")
+    public Object logOut() {
+        return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "退出成功");
+    }
 }
