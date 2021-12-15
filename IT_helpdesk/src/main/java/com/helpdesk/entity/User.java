@@ -42,4 +42,8 @@ public class User {
 
     @ApiModelProperty("组织id")
     private Integer orgId;
+
+
+    @ApiModelProperty("组织name")
+    private String orgName;
 }

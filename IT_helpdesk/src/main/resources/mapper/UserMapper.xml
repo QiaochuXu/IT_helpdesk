@@ -4,7 +4,14 @@
 <mapper namespace="com.helpdesk.mapper.UserMapper">
 
     <select id="listQuery" parameterType="com.helpdesk.param.UserParam" resultType="com.helpdesk.entity.User">
-        SELECT * FROM user
+        SELECT user.*,organization.name as org_name FROM user
+        left join organization on organization.id = user.org_id
+        <where>
+            1=1
+            <if test="orgId != null and orgId > -1">
+                and user.org_id = #{orgId}
+            </if>
+        </where>
     </select>
 
 

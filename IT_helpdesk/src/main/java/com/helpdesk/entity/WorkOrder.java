@@ -60,5 +60,18 @@ public class WorkOrder {
      */
     private String content;
 
+    /**
+     * 标签名称
+     */
+    private String tagName;
+
+    /**
+     * 用户名称
+     */
+    private String userName;
+
+
+
+
 
 }

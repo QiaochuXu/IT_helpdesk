@@ -29,7 +29,6 @@ public class UserController {
     public Object login(@RequestBody UserParam entity) {
         User login = userService.login(entity);
         return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "用户登陆成功", login);
-
     }
 
 
@@ -47,7 +46,7 @@ public class UserController {
 
 
     @GetMapping("page")
-    @ApiOperation("分页")
+    @ApiOperation("查询部门下的所有员工")
     @ApiImplicitParams({
             @ApiImplicitParam(value = "当前页码，从1开始", paramType = "query", required = true, dataType = "int"),
             @ApiImplicitParam(value = "每页显示记录数", paramType = "query", required = true, dataType = "int"),

@@ -14,5 +14,7 @@ public class UserParam {
 
     private String password;
 
+    private String orgId;
+
 
 }

@@ -20,5 +20,15 @@ public class WorkOrderParam {
      */
     private Integer userId;
 
+    /**
+     * 问题
+     */
+    private String questions;
+
+    /**
+     * checkId
+     */
+    private Integer checkId;
+
 
 }
