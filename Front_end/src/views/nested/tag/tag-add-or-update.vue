@@ -1,11 +1,11 @@
 <template>
   <el-dialog :visible.sync="addOrUpdateVisible" :title="!dataForm.id ? 'add' : 'update'" :close-on-click-modal="false" :close-on-press-escape="false">
     <el-form :model="dataForm" ref="dataForm" @keyup.enter.native="dataFormSubmitHandle()" :label-width="'120px'">
-      <el-form-item label="name" prop="name">
+      <el-form-item label="Name" prop="name">
         <el-input v-model="dataForm.name" placeholder="name"></el-input>
       </el-form-item>
-      <el-form-item label="memo" prop="memo">
-        <el-input v-model="dataForm.memo" placeholder="memo"></el-input>
+      <el-form-item label="Description" prop="memo">
+        <el-input v-model="dataForm.memo" placeholder="description"></el-input>
       </el-form-item>
     </el-form>
     <template slot="footer">

@@ -4,16 +4,16 @@
       <!--      <el-form-item label="id" prop="id">-->
       <!--        <el-input v-model="dataForm.id" placeholder="id" :disabled="true"></el-input>-->
       <!--      </el-form-item>-->
-      <el-form-item label="name" prop="name">
+      <el-form-item label="Name" prop="name">
         <el-input v-model="dataForm.name" placeholder="name" :disabled="!dataForm.id ? false : true"></el-input>
       </el-form-item>
-      <el-form-item label="age" prop="age">
+      <el-form-item label="Age" prop="age">
         <el-input v-model="dataForm.age" placeholder="age" :disabled="true"></el-input>
       </el-form-item>
-      <el-form-item label="EMAIL" prop="email">
+      <el-form-item label="Email" prop="email">
         <el-input v-model="dataForm.email" placeholder="email" :disabled="true"></el-input>
       </el-form-item>
-      <el-form-item label="ISADMIN" prop="isAdmin">
+      <el-form-item label="isAdmin" prop="isAdmin">
         <el-select v-model="dataForm.isAdmin" placeholder="isAdmin">
           <el-option
             v-for="item in options_workStatus"

@@ -2,13 +2,13 @@
   <el-card shadow="never" class="aui-card--fill">
     <div class="app-container" v-if="this.isAdmins === 1">
       <el-table v-loading="dataListLoading" :data="dataList" border style="width: 100%;">
-        <el-table-column prop="name" header-align="center" align="center" label="NAME" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="age" header-align="center" align="center" label="AGE" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="email" header-align="center" align="center" label="EMAIL" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="name" header-align="center" align="center" label="Name" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="age" header-align="center" align="center" label="Age" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="email" header-align="center" align="center" label="Email" show-overflow-tooltip></el-table-column>
         <el-table-column prop="username" header-align="center" align="center" label="userName" show-overflow-tooltip></el-table-column>
         <el-table-column prop="isAdmin" header-align="center" align="center" label="isAdmin" :formatter="showFlagbit" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="orgName" header-align="center" align="center" label="organizationName" show-overflow-tooltip></el-table-column>
-        <el-table-column label="edit" fixed="right" header-align="center" align="center" width="150">
+        <el-table-column prop="orgName" header-align="center" align="center" label="Department" show-overflow-tooltip></el-table-column>
+        <el-table-column label="Edit" fixed="right" header-align="center" align="center" width="150">
           <template slot-scope="scope">
             <el-button  type="text" size="small" @click="addOrUpdateHandle(scope.row.id)">update</el-button>
             <el-button type="text" size="small" @click="deleteHandle(scope.row.id)">delete</el-button>

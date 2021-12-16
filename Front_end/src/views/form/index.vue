@@ -13,25 +13,25 @@
           <el-button type="warning" @click="onUnsolved()" round>Unsolved</el-button>
           <el-button type="success" @click="onSpam()" round>Spam</el-button>
           <el-button type="info" @click="onClosed()" round>Closed</el-button>
-          <el-button type="warning" @click="onDelete()" round>Delete</el-button>
+          <el-button type="warning" @click="onDelete()" round>Solved</el-button>
         </el-form-item>
       </el-form>
       <el-table v-loading="dataListLoading" :data="dataList" border style="width: 100%;">
-        <el-table-column prop="userName" header-align="center" align="center" label="REQUESTER" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="questions" header-align="center" align="center" label="SUBJECT" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="checkName" header-align="center" align="center" label="AGENT" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="workStatus" header-align="center" align="center" label="STATUS" show-overflow-tooltip>
+        <el-table-column prop="userName" header-align="center" align="center" label="Requester" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="questions" header-align="center" align="center" label="Request" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="checkName" header-align="center" align="center" label="Follower" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="workStatus" header-align="center" align="center" label="Status" show-overflow-tooltip>
           <template slot-scope="scope">
             <span v-if="scope.row.workStatus==0">unsolved</span>
             <span v-if="scope.row.workStatus==1">open</span>
             <span v-if="scope.row.workStatus==2">closed</span>
             <span v-if="scope.row.workStatus==3">pending</span>
             <span v-if="scope.row.workStatus==4">spam</span>
-            <span v-if="scope.row.workStatus==5">deleted</span>
+            <span v-if="scope.row.workStatus==5">solved</span>
           </template>
         </el-table-column>
-        <el-table-column prop="createTime" header-align="center" align="center" label="LAST MESSAGE" show-overflow-tooltip></el-table-column>
-        <el-table-column label="edit" fixed="right" header-align="center" align="center" width="150">
+        <el-table-column prop="createTime" header-align="center" align="center" label="Last message" show-overflow-tooltip></el-table-column>
+        <el-table-column label="Edit" fixed="right" header-align="center" align="center" width="150">
           <template slot-scope="scope">
             <el-button  type="text" size="small" @click="addOrUpdateHandle(scope.row.id)">update</el-button>
             <el-button type="text" size="small" @click="deleteHandle(scope.row.id)">delete</el-button>

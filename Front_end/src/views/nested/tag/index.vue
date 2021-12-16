@@ -11,9 +11,9 @@
         </el-form-item>
       </el-form>
       <el-table v-loading="dataListLoading" :data="dataList" border style="width: 100%;" v-if="this.isAdmins === 1">
-        <el-table-column prop="name" header-align="center" align="center" label="NAME" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="memo" header-align="center" align="center" label="MEMO" show-overflow-tooltip></el-table-column>
-        <el-table-column label="edit" fixed="right" header-align="center" align="center" width="150">
+        <el-table-column prop="name" header-align="center" align="center" label="Name" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="memo" header-align="center" align="center" label="Description" show-overflow-tooltip></el-table-column>
+        <el-table-column label="Edit" fixed="right" header-align="center" align="center" width="150">
           <template slot-scope="scope">
             <el-button  type="text" size="small" @click="addOrUpdateHandle(scope.row.id)">update</el-button>
             <el-button type="text" size="small" @click="deleteHandle(scope.row.id)">delete</el-button>

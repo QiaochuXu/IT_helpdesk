@@ -4,13 +4,13 @@
 <!--      <el-form-item label="id" prop="id">-->
 <!--        <el-input v-model="dataForm.id" placeholder="id" :disabled="true"></el-input>-->
 <!--      </el-form-item>-->
-      <el-form-item label="questions" prop="questions">
+      <el-form-item label="Request" prop="questions">
         <el-input v-model="dataForm.questions" placeholder="questions" :disabled="!dataForm.id ? false : true"></el-input>
       </el-form-item>
-      <el-form-item label="content" prop="content">
-        <el-input v-model="dataForm.content" placeholder="content"></el-input>
+      <el-form-item label="Response" prop="content">
+        <el-input v-model="dataForm.content" placeholder="Response"></el-input>
       </el-form-item>
-      <el-form-item label="createTime" prop="createTime">
+      <el-form-item label="CreateTime" prop="createTime">
         <el-date-picker
           v-model="dataForm.createTime"
           value-format="yyyy-MM-dd HH:mm:ss"
@@ -31,7 +31,7 @@
           </el-select>
         </el-form-item>
       </el-form>
-      <el-form-item label="STATUS" prop="origin">
+      <el-form-item label="Status" prop="origin">
         <el-select v-model="dataForm.workStatus" placeholder="STATUS">
           <el-option
             v-for="item in options_workStatus"
@@ -107,7 +107,7 @@ export default {
         label: 'spam'
       }, {
         value: 5,
-        label: 'deleted'
+        label: 'solved'
       }]
     }
   },
