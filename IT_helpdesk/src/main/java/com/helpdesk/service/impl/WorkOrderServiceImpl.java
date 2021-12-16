@@ -25,7 +25,7 @@ public class WorkOrderServiceImpl implements WorkOrderService {
     @Override
     public int update(WorkOrder entity) {
         if (entity.getId() == null || entity.getId() == 0L) {
-            // 自己定义的异常方法
+            // Exception methods
         }
 
         return workOrderMapper.updateById(entity);
@@ -34,7 +34,7 @@ public class WorkOrderServiceImpl implements WorkOrderService {
     @Override
     public int remove(Long id) {
         if (id == null || id == 0L) {
-            // 自己定义的异常方法
+            // Exception methods
         }
         return workOrderMapper.deleteById(id);
     }
@@ -42,7 +42,7 @@ public class WorkOrderServiceImpl implements WorkOrderService {
     @Override
     public WorkOrder getById(Long id) {
         if (id == null || id == 0L) {
-            // 自己定义的异常方法
+            // Exception methods
         }
         return workOrderMapper.selectById(id);
     }

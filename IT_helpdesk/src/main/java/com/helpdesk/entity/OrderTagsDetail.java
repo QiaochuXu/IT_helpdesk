@@ -15,18 +15,18 @@ public class OrderTagsDetail {
     private Long id;
 
 
-    @ApiModelProperty("标签id")
+    @ApiModelProperty("tagId")
     private Integer tagId;
 
 
-    @ApiModelProperty("工单id")
+    @ApiModelProperty("workorder_id")
     private Integer workOrderId;
 
 
-    @ApiModelProperty("时间")
+    @ApiModelProperty("createtime")
     private String createTime;
 
 
-    @ApiModelProperty("1 删除 0 正常")
+    @ApiModelProperty("1 deleted 0 normal")
     private Integer del;
 }

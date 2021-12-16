@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public int save(User entity) {
 
-        // 判断用户名称是否存在
+        // if the user name exist
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         wrapper.eq("username", entity.getUsername());
         User user = userMapper.selectOne(wrapper);
@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public int update(User entity) {
         if (entity.getId() == null || entity.getId() == 0L) {
-            log.error("UserServiceImpl update error {}", "id不能为空");
+            log.error("UserServiceImpl update error {}", "id cannot be null");
             throw new BaseResponseException(ResponseErrorCode.USER_DETAIL_EXCEPTION);
         }
 
@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public int remove(Long id) {
         if (id == null || id == 0L) {
-            log.error("UserServiceImpl delete error {}", "id不能为空");
+            log.error("UserServiceImpl delete error {}", "id cannot be null");
             throw new BaseResponseException(ResponseErrorCode.USER_DETAIL_EXCEPTION);
         }
         return userMapper.deleteById(id);
@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getById(Long id) {
         if (id == null || id == 0L) {
-            log.error("UserServiceImpl detail error {}", "id不能为空");
+            log.error("UserServiceImpl detail error {}", "id cannot be null");
             throw new BaseResponseException(ResponseErrorCode.USER_DETAIL_EXCEPTION);
         }
 
@@ -81,7 +81,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User login(UserParam userParam) {
-        // 根据用户名查询
+        // query by username
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         wrapper.eq("username", userParam.getUsername());
         User user = userMapper.selectOne(wrapper);
@@ -89,7 +89,7 @@ public class UserServiceImpl implements UserService {
             throw new BaseResponseException(ResponseErrorCode.USER_USER_NAME_EXCEPTION);
         }
 
-        // 判断密码
+        // check on the password
         if (!user.getPassword().equals(userParam.getPassword())) {
             throw new BaseResponseException(ResponseErrorCode.USER_PASSWORD_EXCEPTION);
         }

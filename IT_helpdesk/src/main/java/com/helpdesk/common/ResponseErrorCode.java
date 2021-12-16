@@ -4,15 +4,16 @@ import org.springframework.http.HttpStatus;
 
 /**
  * 自定义错误码
+ * Customised error codes
  */
 public enum ResponseErrorCode {
     // user
-    USER_DETAIL_EXCEPTION(HttpStatus.BAD_REQUEST, "ParamsError", "用户id不能为空"),
-    USER_USER_NAME_EXCEPTION(HttpStatus.BAD_REQUEST, "ParamsError", "用户名不存在"),
-    USER_NAME_CODE_EXCEPTION(HttpStatus.BAD_REQUEST, "ParamsError", "用户名已存在"),
-    USER_PASSWORD_EXCEPTION(HttpStatus.BAD_REQUEST, "ParamsError", "用户密码错误"),
+    USER_DETAIL_EXCEPTION(HttpStatus.BAD_REQUEST, "ParamsError", "user id cannot be null"),
+    USER_USER_NAME_EXCEPTION(HttpStatus.BAD_REQUEST, "ParamsError", "user name is not exist"),
+    USER_NAME_CODE_EXCEPTION(HttpStatus.BAD_REQUEST, "ParamsError", "username has already exist"),
+    USER_PASSWORD_EXCEPTION(HttpStatus.BAD_REQUEST, "ParamsError", "wrong password or username"),
     // tag
-    TAG_NAME_EXCEPTION(HttpStatus.BAD_REQUEST, "ParamsError", "标签名称存在");
+    TAG_NAME_EXCEPTION(HttpStatus.BAD_REQUEST, "ParamsError", "tag name exist");
 
 
 

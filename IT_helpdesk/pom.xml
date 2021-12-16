@@ -36,7 +36,7 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!--lombok插件-->
+        <!--lombok-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

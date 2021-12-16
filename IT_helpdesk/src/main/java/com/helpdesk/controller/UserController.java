@@ -25,14 +25,14 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/user")
-@Api(tags = "用户接口")
+@Api(tags = "user")
 public class UserController {
     @Autowired
     private UserService userService;
 
 
     @PostMapping(value = "/login")
-    @ApiOperation("用户登陆")
+    @ApiOperation("login")
     public Object login(@RequestBody UserParam entity) {
         User login = userService.login(entity);
         String token = UUID.randomUUID().toString().replace("-", "");
@@ -41,7 +41,7 @@ public class UserController {
         result.put("token", token);
 
         if (ObjectUtils.isEmpty(login.getIsAdmin())) {
-            return BaseResponseUtil.constructResponse(BaseResponseUtil.FAILED,"请联系管理员增加权限", result);
+            return BaseResponseUtil.constructResponse(BaseResponseUtil.FAILED,"Please contact the administrator to add permissions", result);
         }
 
         return BaseResponseUtil.constructResponseValid(BaseResponseUtil.SUCCESS, result);
@@ -49,75 +49,75 @@ public class UserController {
 
 
     @PostMapping(value = "/register")
-    @ApiOperation("用户注册")
+    @ApiOperation("register")
     public Object register(@RequestBody User entity) {
         int result = userService.save(entity);
 
         if (result > 0) {
-            return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "保存成功", entity.getId());
+            return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "Succeed!", entity.getId());
         } else {
-            return BaseResponseUtil.constructResponse(BaseResponseUtil.FAILED, "保存失败", result);
+            return BaseResponseUtil.constructResponse(BaseResponseUtil.FAILED, "Failed!", result);
         }
     }
 
 
     @GetMapping("page")
-    @ApiOperation("查询部门下的所有员工")
+    @ApiOperation("query user in the organization")
     @ApiImplicitParams({
-            @ApiImplicitParam(value = "当前页码，从1开始", paramType = "query", required = true, dataType = "int"),
-            @ApiImplicitParam(value = "每页显示记录数", paramType = "query", required = true, dataType = "int"),
-            @ApiImplicitParam(value = "排序字段", paramType = "query", dataType = "String"),
-            @ApiImplicitParam(value = "排序方式，可选值(asc、desc)", paramType = "query", dataType = "String")
+            @ApiImplicitParam(value = "current page", paramType = "query", required = true, dataType = "int"),
+            @ApiImplicitParam(value = "page size", paramType = "query", required = true, dataType = "int"),
+            @ApiImplicitParam(value = "sort field", paramType = "query", dataType = "String"),
+            @ApiImplicitParam(value = "sort method，in(asc、desc)", paramType = "query", dataType = "String")
     })
     public Object page(UserParam queryParam) {
         PageInfo<User> pageInfo = userService.pageQuery(queryParam);
 
-        return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "查询成功", pageInfo);
+        return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "Succeed!", pageInfo);
     }
 
     @DeleteMapping(value = "/{id}")
-    @ApiOperation("删除")
+    @ApiOperation("delete")
     public Object remove(@PathVariable long id) {
         int result = userService.remove(id);
 
         if (result > 0) {
-            return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "删除成功");
+            return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "Succeed!");
         } else {
-            return BaseResponseUtil.constructResponse(BaseResponseUtil.FAILED, "删除失败");
+            return BaseResponseUtil.constructResponse(BaseResponseUtil.FAILED, "Failed!");
         }
     }
 
 
 
     @PutMapping
-    @ApiOperation("用户修改")
+    @ApiOperation("update")
     public Object update(@RequestBody User entity) {
         int result = userService.update(entity);
 
         if (result > 0) {
-            return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "修改成功", entity.getId());
+            return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "Succeed!", entity.getId());
         } else {
-            return BaseResponseUtil.constructResponse(BaseResponseUtil.FAILED, "修改失败");
+            return BaseResponseUtil.constructResponse(BaseResponseUtil.FAILED, "Failed!");
         }
     }
 
 
     @GetMapping(value = "/{id}/detail")
-    @ApiOperation("详情")
+    @ApiOperation("detail")
     public Object detail(@PathVariable long id) {
         User entity = userService.getById(id);
-        return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "查询成功", entity);
+        return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "Succeed!", entity);
     }
 
     @PostMapping(value = "/logout")
-    @ApiOperation("退出")
+    @ApiOperation("logout")
     public Object logOut() {
-        return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "退出成功");
+        return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "Failed!");
     }
 
     @GetMapping("getUserByOrganization")
     public Object getUserByOrganization(Long id) {
         List<User> users = userService.selectByOrganization(id);
-        return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "查询成功", users);
+        return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "Succeed!", users);
     }
 }

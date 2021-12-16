@@ -16,14 +16,14 @@ public class Tags {
     private Long id;
 
 
-    @ApiModelProperty("标签名称")
+    @ApiModelProperty("tagName")
     private String name;
 
 
-    @ApiModelProperty("标签备注")
+    @ApiModelProperty("tagDES")
     private String memo;
 
 
-    @ApiModelProperty("1 删除 0 正常")
+    @ApiModelProperty("1 deleted 0 normal")
     private Integer del;
 }

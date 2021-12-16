@@ -15,14 +15,14 @@ public class Organization {
     private Long id;
 
 
-    @ApiModelProperty("创建时间")
+    @ApiModelProperty("create time")
     private String createTime;
 
 
-    @ApiModelProperty("部门名")
+    @ApiModelProperty("orgName")
     private String name;
 
 
-    @ApiModelProperty("备注")
+    @ApiModelProperty("memo")
     private String memo;
 }

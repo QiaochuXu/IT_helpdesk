@@ -43,7 +43,7 @@ public class TagsServiceImpl implements TagsService {
     @Override
     public int update(Tags entity) {
         if (entity.getId() == null || entity.getId() == 0L) {
-            // 自己定义的异常方法
+            // Exception methods
         }
 
         return tagsMapper.updateById(entity);
@@ -52,7 +52,7 @@ public class TagsServiceImpl implements TagsService {
     @Override
     public int remove(Long id) {
         if (id == null || id == 0L) {
-            // 自己定义的异常方法
+            // Exception methods
         }
         return tagsMapper.deleteById(id);
     }
@@ -60,7 +60,7 @@ public class TagsServiceImpl implements TagsService {
     @Override
     public Tags getById(Long id) {
         if (id == null || id == 0L) {
-            // 自己定义的异常方法
+            // Exception methods
         }
 
         return tagsMapper.selectById(id);

@@ -17,35 +17,35 @@ public class User {
     private Long id;
 
 
-    @ApiModelProperty("用户名")
+    @ApiModelProperty("name")
     private String name;
 
 
-    @ApiModelProperty("年龄")
+    @ApiModelProperty("age")
     private Integer age;
 
 
-    @ApiModelProperty("邮箱")
+    @ApiModelProperty("email")
     private String email;
 
 
-    @ApiModelProperty("密码")
+    @ApiModelProperty("password")
     private String password;
 
 
-    @ApiModelProperty("用户登陆名")
+    @ApiModelProperty("username")
     private String username;
 
 
-    @ApiModelProperty("是否为管理员")
+    @ApiModelProperty("isAdmin")
     private Integer isAdmin;
 
 
-    @ApiModelProperty("组织id")
+    @ApiModelProperty("orgID")
     private Integer orgId;
 
 
-    @ApiModelProperty("组织name")
+    @ApiModelProperty("orgName")
     @TableField(exist = false)
     private String orgName;
 }

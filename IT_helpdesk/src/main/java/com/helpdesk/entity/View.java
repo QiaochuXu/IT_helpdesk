@@ -21,36 +21,36 @@ public class View {
 
 
     /**
-     *视图名称
+     *视图名称 view name
      */
-    @ApiModelProperty("视图名称")
+    @ApiModelProperty("view_name")
     private String name;
 
 
     /**
-     *视图备注
+     *视图备注 view description
      */
-    @ApiModelProperty("视图备注")
+    @ApiModelProperty("view_des")
     private String memo;
 
 
     /**
-     *用户id
+     *用户id user id
      */
-    @ApiModelProperty("用户id")
+    @ApiModelProperty("user_id")
     private Integer userId;
 
     /**
-     *用户可查看
+     *用户可查看 who can view
      */
-    @ApiModelProperty("用户id")
+    @ApiModelProperty("user_id")
     private Integer viewUserId;
 
-    @ApiModelProperty("创建人")
+    @ApiModelProperty("user_name")
     @TableField(exist = false)
     private String userName;
 
-    @ApiModelProperty("可查看人")
+    @ApiModelProperty("check_name")
     @TableField(exist = false)
     private String userViewName;
 

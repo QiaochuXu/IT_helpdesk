@@ -30,44 +30,44 @@ public class ViewController {
     private ViewService viewService;
 
     @GetMapping("views")
-    @ApiOperation("查询视图")
+    @ApiOperation("query")
     public Object page(ViewParam queryParam) {
         List<View> views = viewService.pageQuery(queryParam);
 
-        return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "查询成功", views);
+        return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "Succeed!", views);
     }
 
     @DeleteMapping(value = "/{id}")
-    @ApiOperation("删除视图")
+    @ApiOperation("delete")
     public Object remove(@PathVariable long id) {
         int result = viewService.remove(id);
 
         if (result > 0) {
-            return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "删除成功");
+            return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "Succeed!");
         } else {
-            return BaseResponseUtil.constructResponse(BaseResponseUtil.FAILED, "删除失败");
+            return BaseResponseUtil.constructResponse(BaseResponseUtil.FAILED, "Failed!");
         }
     }
 
 
     @PostMapping(value = "/save")
-    @ApiOperation("保存视图")
+    @ApiOperation("save")
     public Object save(@RequestBody View entity) {
         int result = viewService.save(entity);
 
         if (result > 0) {
-            return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "保存成功", entity.getId());
+            return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "Succeed!", entity.getId());
         } else {
-            return BaseResponseUtil.constructResponse(BaseResponseUtil.FAILED, "保存失败", result);
+            return BaseResponseUtil.constructResponse(BaseResponseUtil.FAILED, "Failed!", result);
         }
     }
 
 
     @GetMapping(value = "/{id}/detail")
-    @ApiOperation("详情")
+    @ApiOperation("detail")
     public Object detail(@PathVariable long id) {
         View entity = viewService.getById(id);
-        return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "查询成功", entity);
+        return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "Succeed!", entity);
     }
 
 
