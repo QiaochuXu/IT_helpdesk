@@ -17,4 +17,6 @@ public interface OrganizationMapper extends BaseMapper<Organization> {
 
     List<Organization> listQuery(OrganizationParam queryParam);
 
+    List<Organization> getAll();
+
 }

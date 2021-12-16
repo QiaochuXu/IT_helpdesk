@@ -31,7 +31,7 @@ public class TagsServiceImpl implements TagsService {
     @Override
     public int save(Tags entity) {
         QueryWrapper<Tags> wrapper = new QueryWrapper<>();
-        wrapper.eq("username", entity.getName());
+        wrapper.eq("name", entity.getName());
         Tags tags = tagsMapper.selectOne(wrapper);
         if (!ObjectUtils.isEmpty(tags)) {
             throw new BaseResponseException(ResponseErrorCode.TAG_NAME_EXCEPTION);
@@ -70,6 +70,11 @@ public class TagsServiceImpl implements TagsService {
     public PageInfo<Tags> pageQuery(TagsParam queryParam) {
         return PageHelper.startPage(queryParam.getPn(), queryParam.getPs())
                 .doSelectPageInfo(() -> tagsMapper.listQuery(queryParam));
+    }
+
+    @Override
+    public List<Tags> getALl() {
+        return tagsMapper.getALl();
     }
 
 

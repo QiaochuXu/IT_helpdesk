@@ -4,7 +4,12 @@
 <mapper namespace="com.helpdesk.mapper.TagsMapper">
 
     <select id="listQuery" parameterType="com.helpdesk.param.TagsParam" resultType="com.helpdesk.entity.Tags">
-        SELECT * FROM tags
+        SELECT * FROM tags where 1 = 1
+        <if test="name != null">and name like CONCAT('%',#{name},'%')</if>
+    </select>
+
+    <select id="getALl" resultType="com.helpdesk.entity.Tags">
+        SELECT id, name FROM tags
     </select>
 
 

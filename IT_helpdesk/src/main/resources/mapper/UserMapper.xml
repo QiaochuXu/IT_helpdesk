@@ -8,10 +8,13 @@
         left join organization on organization.id = user.org_id
         <where>
             1=1
-            <if test="orgId != null and orgId > -1">
-                and user.org_id = #{orgId}
+            <if test="name != null">
+                and user.name = #{name}
             </if>
         </where>
+    </select>
+    <select id="selectByOrganization" resultType="com.helpdesk.entity.User">
+        SELECT id, name FROM user WHERE org_id = #{orgId}
     </select>
 
 

@@ -3,9 +3,11 @@ package com.helpdesk.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.helpdesk.common.BaseResponseUtil;
+import com.helpdesk.entity.Organization;
 import com.helpdesk.entity.User;
 import com.helpdesk.param.UserParam;
 import com.helpdesk.service.UserService;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -16,6 +18,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -36,6 +39,10 @@ public class UserController {
         Map<String,Object> result = new HashMap<>();
         result.put("user", login);
         result.put("token", token);
+
+        if (ObjectUtils.isEmpty(login.getIsAdmin())) {
+            return BaseResponseUtil.constructResponse(BaseResponseUtil.FAILED,"请联系管理员增加权限", result);
+        }
 
         return BaseResponseUtil.constructResponseValid(BaseResponseUtil.SUCCESS, result);
     }
@@ -82,7 +89,7 @@ public class UserController {
 
 
 
-    @PutMapping(value = "/update")
+    @PutMapping
     @ApiOperation("用户修改")
     public Object update(@RequestBody User entity) {
         int result = userService.update(entity);
@@ -97,7 +104,7 @@ public class UserController {
 
     @GetMapping(value = "/{id}/detail")
     @ApiOperation("详情")
-    public Object detail(@PathVariable long id, @RequestHeader String token) {
+    public Object detail(@PathVariable long id) {
         User entity = userService.getById(id);
         return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "查询成功", entity);
     }
@@ -108,5 +115,9 @@ public class UserController {
         return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "退出成功");
     }
 
-
+    @GetMapping("getUserByOrganization")
+    public Object getUserByOrganization(Long id) {
+        List<User> users = userService.selectByOrganization(id);
+        return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "查询成功", users);
+    }
 }

@@ -14,6 +14,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
 
 
 @RestController
@@ -80,6 +81,12 @@ public class OrganizationController {
     public Object detail(@PathVariable long id) {
         Organization entity = organizationService.getById(id);
         return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "查询成功", entity);
+    }
+
+    @GetMapping("organizationList")
+    public Object getList() {
+        List<Organization> all = organizationService.getAll();
+        return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "查询成功", all);
     }
 
 

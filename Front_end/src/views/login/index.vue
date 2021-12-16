@@ -42,6 +42,7 @@
       </el-form-item>
 
       <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
+      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click="updatePassWordVisible()">Register</el-button>
 
       <div class="tips">
         <span style="margin-right:20px;">username: admin</span>
@@ -49,12 +50,37 @@
       </div>
 
     </el-form>
+    <el-dialog :visible.sync="visible" :title="'register'" :close-on-click-modal="false" :close-on-press-escape="false">
+      <el-card>
+        <el-form :model="registers" ref="dataForm" :label-width="'200px'">
+          <el-form-item label="name">
+            <el-input v-model="registers.name"></el-input>
+          </el-form-item>
+          <el-form-item label="age">
+            <el-input v-model="registers.age"></el-input>
+          </el-form-item>
+          <el-form-item label="email">
+            <el-input v-model="registers.email"></el-input>
+          </el-form-item>
+          <el-form-item label="username">
+            <el-input v-model="registers.username"></el-input>
+          </el-form-item>
+          <el-form-item label="password">
+            <el-input v-model="registers.password"></el-input>
+          </el-form-item>
+        </el-form>
+      </el-card>
+      <template slot="footer">
+        <el-button @click="visible = false">center</el-button>
+        <el-button type="primary" @click="commits()">commit</el-button>
+      </template>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 // import { validUsername } from '@/utils/validate'
-
+import user from "@/store/modules/user"
 export default {
   name: 'Login',
   data() {
@@ -75,7 +101,15 @@ export default {
     return {
       loginForm: {
         username: '',
-        password: ''
+        password: '',
+        isAdmins: ''
+      },
+      registers: {
+        name: '',
+        age: '',
+        email: '',
+        password: '',
+        username: ''
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
@@ -83,7 +117,8 @@ export default {
       },
       loading: false,
       passwordType: 'password',
-      redirect: undefined
+      redirect: undefined,
+      visible: false
     }
   },
   watch: {
@@ -92,9 +127,31 @@ export default {
         this.redirect = route.query && route.query.redirect
       },
       immediate: true
+    },
+    'visible'(nval) {
+      if (nval === false) {
+        this.registers = this.$options.data().registers
+      }
     }
   },
   methods: {
+    updatePassWordVisible() {
+      this.visible = true
+    },
+    commits() {
+      this.$ajax.post('/api/user/register', this.registers).then(({ data: res }) => {
+        if (res.code !== 20000) {
+          return this.$message.error(res.msg)
+        }
+        this.visible = false
+        this.$message({
+          message: 'success',
+          type: 'success',
+          duration: 500
+        })
+        console.log(123)
+      }).catch(() => {})
+    },
     showPwd() {
       if (this.passwordType === 'password') {
         this.passwordType = ''
@@ -111,7 +168,6 @@ export default {
           this.loading = true
           this.$store.dispatch('user/login', this.loginForm).then(() => {
             this.$router.push({ path: this.redirect || '/' })
-            this.loading = false
           }).catch(() => {
             this.loading = false
           })

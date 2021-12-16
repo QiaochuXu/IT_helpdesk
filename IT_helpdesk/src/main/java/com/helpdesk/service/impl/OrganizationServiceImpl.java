@@ -61,5 +61,10 @@ public class OrganizationServiceImpl implements OrganizationService {
                 .doSelectPageInfo(() -> organizationMapper.listQuery(queryParam));
     }
 
+    @Override
+    public List<Organization> getAll() {
+        return organizationMapper.getAll();
+    }
+
 
 }

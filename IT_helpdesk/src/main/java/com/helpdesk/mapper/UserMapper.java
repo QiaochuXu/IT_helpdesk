@@ -17,4 +17,5 @@ public interface UserMapper extends BaseMapper<User> {
 
     List<User> listQuery(UserParam queryParam);
 
+    List<User> selectByOrganization(Long orgId);
 }

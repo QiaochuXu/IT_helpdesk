@@ -17,4 +17,6 @@ public interface TagsMapper extends BaseMapper<Tags> {
 
     List<Tags> listQuery(TagsParam queryParam);
 
+    List<Tags> getALl();
+
 }

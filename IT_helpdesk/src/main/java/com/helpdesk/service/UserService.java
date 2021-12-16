@@ -6,6 +6,8 @@ import com.helpdesk.common.BaseServiceInterface;
 import com.helpdesk.entity.User;
 import com.helpdesk.param.UserParam;
 
+import java.util.List;
+
 
 public interface UserService extends BaseServiceInterface<User, UserParam, Long> {
 
@@ -13,4 +15,5 @@ public interface UserService extends BaseServiceInterface<User, UserParam, Long>
 
      User login(UserParam userParam);
 
+    List<User> selectByOrganization(Long id);
 }

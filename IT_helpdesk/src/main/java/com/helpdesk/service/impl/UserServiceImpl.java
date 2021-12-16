@@ -96,5 +96,10 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+    @Override
+    public List<User> selectByOrganization(Long id) {
+        return userMapper.selectByOrganization(id);
+    }
+
 
 }

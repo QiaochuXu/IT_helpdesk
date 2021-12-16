@@ -6,6 +6,9 @@
     <select id="listQuery" parameterType="com.helpdesk.param.OrganizationParam" resultType="com.helpdesk.entity.Organization">
         SELECT * FROM organization
     </select>
+    <select id="getAll" resultType="com.helpdesk.entity.Organization">
+        SELECT id, name FROM organization
+    </select>
 
 
 </mapper>

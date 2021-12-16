@@ -3,34 +3,16 @@
     <div class="app-container">
       <el-form ref="form" :model="dataForm" label-width="120px" :inline="true">
         <el-form-item>
-          <el-input v-model="dataForm.questions" placeholder="Search in all questions" clearable></el-input>
+          <el-input v-model="dataForm.name" placeholder="Search in all name" clearable></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="getDataList()">Query</el-button>
           <el-button type="primary" @click="addOrUpdateHandle()">Add</el-button>
-          <el-button type="success" @click="onOpen()" round>Open</el-button>
-          <el-button type="danger" @click="onPending()" round>Pending</el-button>
-          <el-button type="warning" @click="onUnsolved()" round>Unsolved</el-button>
-          <el-button type="success" @click="onSpam()" round>Spam</el-button>
-          <el-button type="info" @click="onClosed()" round>Closed</el-button>
-          <el-button type="warning" @click="onDelete()" round>Delete</el-button>
         </el-form-item>
       </el-form>
       <el-table v-loading="dataListLoading" :data="dataList" border style="width: 100%;">
-        <el-table-column prop="userName" header-align="center" align="center" label="REQUESTER" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="questions" header-align="center" align="center" label="SUBJECT" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="checkName" header-align="center" align="center" label="AGENT" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="workStatus" header-align="center" align="center" label="STATUS" show-overflow-tooltip>
-          <template slot-scope="scope">
-            <span v-if="scope.row.workStatus==0">unsolved</span>
-            <span v-if="scope.row.workStatus==1">open</span>
-            <span v-if="scope.row.workStatus==2">closed</span>
-            <span v-if="scope.row.workStatus==3">pending</span>
-            <span v-if="scope.row.workStatus==4">spam</span>
-            <span v-if="scope.row.workStatus==5">deleted</span>
-          </template>
-        </el-table-column>
-        <el-table-column prop="createTime" header-align="center" align="center" label="LAST MESSAGE" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="name" header-align="center" align="center" label="NAME" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="memo" header-align="center" align="center" label="MEMO" show-overflow-tooltip></el-table-column>
         <el-table-column label="edit" fixed="right" header-align="center" align="center" width="150">
           <template slot-scope="scope">
             <el-button  type="text" size="small" @click="addOrUpdateHandle(scope.row.id)">update</el-button>
@@ -53,25 +35,17 @@
 </template>
 
 <script>
-import AddOrUpdate from './form-add-or-update.vue'
+import AddOrUpdate from './tag-add-or-update.vue'
 export default {
   data() {
     return {
       dataForm: {
-        name: '',
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: false,
-        type: [],
-        resource: '',
-        desc: ''
+        name: ''
       },
-      checkUserId: '',
       // 设置属性
       mixinViewModuleOptions: {
         createdIsNeed: true,
-        getDataListURL: '/api/work/page',
+        getDataListURL: '/api/tags/page',
         getDataListIsPage: true
       },
       dataList: [],
@@ -142,44 +116,15 @@ export default {
       this.query()
     },
     addOrUpdateHandle(id) {
+      console.log(id)
       this.addOrUpdateVisible = true
       this.$nextTick(() => {
         this.$refs.addOrUpdate.dataForm.id = id
         this.$refs.addOrUpdate.init()
       })
     },
-    onUnsolved() {
-      this.dataForm.workStatus = 0
-      this.getDataList()
-      this.dataForm.workStatus = ''
-    },
-    onOpen() {
-      this.dataForm.workStatus = 1
-      this.getDataList()
-      this.dataForm.workStatus = ''
-    },
-    onClosed() {
-      this.dataForm.workStatus = 2
-      this.getDataList()
-      this.dataForm.workStatus = ''
-    },
-    onPending() {
-      this.dataForm.workStatus = 3
-      this.getDataList()
-      this.dataForm.workStatus = ''
-    },
-    onSpam() {
-      this.dataForm.workStatus = 4
-      this.getDataList()
-      this.dataForm.workStatus = ''
-    },
-    onDelete() {
-      this.dataForm.workStatus = 5
-      this.getDataList()
-      this.dataForm.workStatus = ''
-    },
     deleteHandle(id) {
-      this.$ajax.delete(`/api/work/${id}`
+      this.$ajax.delete(`/api/tags/${id}`
       ).then(({ data: res }) => {
         if (res.code !== 20000) {
           return this.$message.error(res.msg)
@@ -202,8 +147,7 @@ export default {
 </script>
 
 <style scoped>
-.line{
-  text-align: center;
-}
+  .line{
+    text-align: center;
+  }
 </style>
-

@@ -6,7 +6,8 @@
     <select id="listQuery" parameterType="com.helpdesk.param.WorkOrderParam" resultType="com.helpdesk.entity.WorkOrder">
         SELECT work_order.* , tags.name as tag_name,
         user.name as user_name,
-        user_check.name as checkName
+        user_check.name as checkName,
+        user.org_id orgId
         FROM work_order
         left join tags on tags.id = work_order.tag_id
         left join user on user.id = work_order.user_id
@@ -26,7 +27,14 @@
                 and work_order.work_status = #{workStatus}
             </if>
         </where>
+    </select>
 
+    <select id="selectById" resultType="com.helpdesk.entity.WorkOrder">
+        SELECT work_order.*,
+        user.org_id orgId
+        FROM work_order
+        left join user on user.id = work_order.check_user_id
+        where work_order.id = #{id}
     </select>
 
 

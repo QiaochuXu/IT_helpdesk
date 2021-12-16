@@ -72,6 +72,12 @@ public class WorkOrder {
     @TableField(exist = false)
     private String userName;
 
+    /**
+     * 部门id
+     */
+    @TableField(exist = false)
+    private Long orgId;
+
     private Integer checkUserId;
 
     @TableField(exist = false)

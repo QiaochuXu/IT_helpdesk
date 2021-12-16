@@ -11,5 +11,5 @@ public class TagsParam {
 
     private int pn;
 
-
+    private String name;
 }

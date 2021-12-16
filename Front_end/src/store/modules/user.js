@@ -27,6 +27,9 @@ const mutations = {
   },
   SET_USER_ID: (state, userId) => {
     state.userId = userId
+  },
+  SET_IS_ADMIN: (state, isAdmin) => {
+    state.isAdmin = isAdmin
   }
 }
 
@@ -39,6 +42,7 @@ const actions = {
         const { data } = response
         commit('SET_TOKEN', data.token)
         commit('SET_USER_ID', data.user.id)
+        commit('SET_IS_ADMIN', data.user.isAdmin)
         setToken(data.token)
         resolve()
       }).catch(error => {
@@ -50,7 +54,6 @@ const actions = {
   // get user info
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
-      console.log(state)
       getInfo(state.token, state.userId).then(response => {
         const { data } = response
 

@@ -14,6 +14,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
 
 
 @RestController
@@ -51,7 +52,7 @@ public class TagsController {
     }
 
 
-    @PostMapping(value = "/save")
+    @PostMapping
     @ApiOperation("标签创建")
     public Object save(@RequestBody Tags entity) {
         int result = tagsService.save(entity);
@@ -63,7 +64,7 @@ public class TagsController {
         }
     }
 
-    @PutMapping(value = "/update")
+    @PutMapping
     @ApiOperation("标签修改")
     public Object update(@RequestBody Tags entity) {
         int result = tagsService.update(entity);
@@ -81,6 +82,12 @@ public class TagsController {
     public Object detail(@PathVariable long id) {
         Tags entity = tagsService.getById(id);
         return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "查询成功", entity);
+    }
+
+    @GetMapping("getTagsList")
+    public Object getTagsList() {
+        List<Tags> list =  tagsService.getALl();
+        return BaseResponseUtil.constructResponse(BaseResponseUtil.SUCCESS, "查询成功", list);
     }
 
 
