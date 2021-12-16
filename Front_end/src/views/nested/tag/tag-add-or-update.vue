@@ -38,7 +38,7 @@ export default {
         }
       })
     },
-    // 获取信息
+    // get info
     getInfo() {
       this.$ajax.get(`/api/tags/${this.dataForm.id}/detail`).then(({ data: res }) => {
         if (res.code !== 20000) {
@@ -50,14 +50,14 @@ export default {
         }
       }).catch(() => {})
     },
-    // 表单提交
+    // submit form
     dataFormSubmitHandle: debounce(function() {
       this.$ajax[!this.dataForm.id ? 'post' : 'put']('/api/tags/', this.dataForm).then(({ data: res }) => {
         if (res.code !== 20000) {
           return this.$message.error(res.msg)
         }
         this.$message({
-          message: '成功',
+          message: 'Succeed!',
           type: 'success',
           duration: 500,
           onClose: () => {

@@ -20,8 +20,8 @@
         ></el-date-picker>
       </el-form-item>
       <el-form ref="form" :model="dataForm" label-width="120px" :inline="true">
-        <el-form-item label="所属标签" prop="tagId">
-          <el-select v-model="dataForm.tagId" clearable placeholder="请选择" >
+        <el-form-item label="Tag" prop="tagId">
+          <el-select v-model="dataForm.tagId" clearable placeholder="Select" >
             <el-option
               v-for="item in tagsList"
               :key="item.id"
@@ -41,8 +41,8 @@
           </el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="所属部门" prop="orgId">
-        <el-select v-model="dataForm.orgId" @change="changeTypeList" placeholder="请选择">
+      <el-form-item label="Department" prop="orgId">
+        <el-select v-model="dataForm.orgId" @change="changeTypeList" placeholder="Select">
           <el-option
             v-for="item in options_orgList"
             :key="item.id"
@@ -51,7 +51,7 @@
           </el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="所属人" prop="checkUserId" placeholder="请选择">
+      <el-form-item label="Follower" prop="checkUserId" placeholder="Select">
         <el-select v-model="dataForm.checkUserId" clearable>
           <el-option
             v-for="item in options_userList"
@@ -159,7 +159,7 @@ export default {
     initProduceList(val) {
       this.options_userList = [{ id: val.id, name: val.name }]
     },
-    // 获取信息
+    // get info
     getInfo() {
       this.$ajax.get(`/api/work/${this.dataForm.id}/detail`).then(({ data: res }) => {
         if (res.code !== 20000) {
@@ -172,7 +172,7 @@ export default {
         }
       }).catch(() => {})
     },
-    // 表单提交
+    // submit form
     dataFormSubmitHandle: debounce(function() {
       this.dataForm.userId = user.state.userId
       this.$ajax[!this.dataForm.id ? 'post' : 'put']('/api/work/', this.dataForm).then(({ data: res }) => {
@@ -180,7 +180,7 @@ export default {
           return this.$message.error(res.msg)
         }
         this.$message({
-          message: '成功',
+          message: 'Succeed!',
           type: 'success',
           duration: 500,
           onClose: () => {

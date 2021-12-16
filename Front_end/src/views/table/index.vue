@@ -74,9 +74,9 @@ export default {
     },
     showFlagbit(row, column) {
       if (row.isAdmin === 0) {
-        return '普通用户'
+        return 'user'
       } else if (row.isAdmin === 1) {
-        return '管理员'
+        return 'admin'
       } else {
         return row.isAdmin
       }
@@ -107,13 +107,13 @@ export default {
         this.dataListLoading = false
       })
     },
-    // 分页, 每页条数
+    // 分页, 每页条数 ps
     pageSizeChangeHandle(val) {
       this.page = 1
       this.limit = val
       this.query()
     },
-    // 分页, 当前页
+    // 分页, 当前页 pn
     pageCurrentChangeHandle(val) {
       this.page = val
       this.query()
@@ -136,7 +136,7 @@ export default {
           return this.$message.error(res.msg)
         }
         this.$message({
-          message: '成功',
+          message: 'Succeed!',
           type: 'success',
           duration: 500,
           onClose: () => {

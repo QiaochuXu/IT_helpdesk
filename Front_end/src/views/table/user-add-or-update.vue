@@ -23,8 +23,8 @@
           </el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="所属部门" prop="orgId">
-        <el-select v-model="dataForm.orgId" placeholder="请选择">
+      <el-form-item label="Department" prop="orgId">
+        <el-select v-model="dataForm.orgId" placeholder="Select">
           <el-option
             v-for="item in options_orgList"
             :key="item.id"
@@ -59,10 +59,10 @@ export default {
       options_orgList: [],
       options_workStatus: [{
         value: 0,
-        label: '普通用户'
+        label: 'user'
       }, {
         value: 1,
-        label: '管理员'
+        label: 'admin'
       }]
     }
   },
@@ -91,7 +91,7 @@ export default {
         this.options_orgList = res.data
       }).catch(() => {})
     },
-    // 获取信息
+    // get info
     getInfo() {
       this.$ajax.get(`/api/user/${this.dataForm.id}/detail`).then(({ data: res }) => {
         if (res.code !== 20000) {
@@ -103,14 +103,14 @@ export default {
         }
       }).catch(() => {})
     },
-    // 表单提交
+    // submit form
     dataFormSubmitHandle: debounce(function() {
       this.$ajax[!this.dataForm.id ? 'post' : 'put']('/api/user/', this.dataForm).then(({ data: res }) => {
         if (res.code !== 20000) {
           return this.$message.error(res.msg)
         }
         this.$message({
-          message: '成功',
+          message: 'Succeed!',
           type: 'success',
           duration: 500,
           onClose: () => {
