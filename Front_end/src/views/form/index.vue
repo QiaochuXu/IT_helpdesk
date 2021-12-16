@@ -54,6 +54,7 @@
 
 <script>
 import AddOrUpdate from './form-add-or-update.vue'
+import user from "@/store/modules/user"
 export default {
   data() {
     return {

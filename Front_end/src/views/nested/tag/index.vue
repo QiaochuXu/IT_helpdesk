@@ -2,15 +2,15 @@
   <el-card shadow="never" class="aui-card--fill">
     <div class="app-container">
       <el-form ref="form" :model="dataForm" label-width="120px" :inline="true">
-        <el-form-item>
+        <el-form-item v-if="this.isAdmins === 1">
           <el-input v-model="dataForm.name" placeholder="Search in all name" clearable></el-input>
         </el-form-item>
-        <el-form-item>
+        <el-form-item v-if="this.isAdmins === 1">
           <el-button type="primary" @click="getDataList()">Query</el-button>
           <el-button type="primary" @click="addOrUpdateHandle()">Add</el-button>
         </el-form-item>
       </el-form>
-      <el-table v-loading="dataListLoading" :data="dataList" border style="width: 100%;">
+      <el-table v-loading="dataListLoading" :data="dataList" border style="width: 100%;" v-if="this.isAdmins === 1">
         <el-table-column prop="name" header-align="center" align="center" label="NAME" show-overflow-tooltip></el-table-column>
         <el-table-column prop="memo" header-align="center" align="center" label="MEMO" show-overflow-tooltip></el-table-column>
         <el-table-column label="edit" fixed="right" header-align="center" align="center" width="150">
@@ -27,7 +27,8 @@
         :total="total"
         layout="total, sizes, prev, pager, next, jumper"
         @size-change="pageSizeChangeHandle"
-        @current-change="pageCurrentChangeHandle">
+        @current-change="pageCurrentChangeHandle"
+        v-if="this.isAdmins === 1">
       </el-pagination>
       <add-or-update v-if="addOrUpdateVisible" ref="addOrUpdate" @refreshDataList="getDataList"></add-or-update>
     </div>
@@ -36,6 +37,7 @@
 
 <script>
 import AddOrUpdate from './tag-add-or-update.vue'
+import user from "@/store/modules/user";
 export default {
   data() {
     return {
@@ -48,6 +50,7 @@ export default {
         getDataListURL: '/api/tags/page',
         getDataListIsPage: true
       },
+      isAdmins: '',
       dataList: [],
       order: '',
       orderField: '',
@@ -60,6 +63,7 @@ export default {
     }
   },
   created() {
+    this.isAdmins = user.state.isAdmin
     if (this.mixinViewModuleOptions.createdIsNeed) {
       this.query()
     }

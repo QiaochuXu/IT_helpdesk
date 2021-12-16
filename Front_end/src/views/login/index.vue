@@ -41,13 +41,8 @@
         </span>
       </el-form-item>
 
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click="updatePassWordVisible()">Register</el-button>
-
-      <div class="tips">
-        <span style="margin-right:20px;">username: admin</span>
-        <span> password: any</span>
-      </div>
+      <el-button :loading="loading" type="primary" style="width:30%;margin-left: 70px" @click.native.prevent="handleLogin">Login</el-button>
+      <el-button type="primary" style="width:30%;" @click="updatePassWordVisible()">Register</el-button>
 
     </el-form>
     <el-dialog :visible.sync="visible" :title="'register'" :close-on-click-modal="false" :close-on-press-escape="false">

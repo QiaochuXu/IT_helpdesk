@@ -1,6 +1,6 @@
 <template>
   <el-card shadow="never" class="aui-card--fill">
-    <div class="app-container">
+    <div class="app-container" v-if="this.isAdmins === 1">
       <el-table v-loading="dataListLoading" :data="dataList" border style="width: 100%;">
         <el-table-column prop="name" header-align="center" align="center" label="NAME" show-overflow-tooltip></el-table-column>
         <el-table-column prop="age" header-align="center" align="center" label="AGE" show-overflow-tooltip></el-table-column>
@@ -22,7 +22,8 @@
         :total="total"
         layout="total, sizes, prev, pager, next, jumper"
         @size-change="pageSizeChangeHandle"
-        @current-change="pageCurrentChangeHandle">
+        @current-change="pageCurrentChangeHandle"
+        v-if="this.isAdmins === 1">
       </el-pagination>
       <add-or-update v-if="addOrUpdateVisible" ref="addOrUpdate" @refreshDataList="getDataList"></add-or-update>
     </div>
@@ -31,6 +32,7 @@
 
 <script>
 import AddOrUpdate from './user-add-or-update.vue'
+import user from "@/store/modules/user";
 export default {
   data() {
     return {
@@ -42,6 +44,7 @@ export default {
         getDataListURL: '/api/user/page',
         getDataListIsPage: true
       },
+      isAdmins: '',
       dataList: [],
       order: '',
       orderField: '',
@@ -54,6 +57,7 @@ export default {
     }
   },
   created() {
+    this.isAdmins = user.state.isAdmin
     if (this.mixinViewModuleOptions.createdIsNeed) {
       this.query()
     }

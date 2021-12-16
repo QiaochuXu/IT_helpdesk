@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import other from '@/views/other/index'
 
 Vue.use(Router)
 
@@ -98,11 +97,6 @@ export const constantRoutes = [
         meta: { title: 'tag' }
       }
     ]
-  },
-  {
-    path: '/form',
-    name: 'form',
-    component: other
   },
 
   // 404 page must be placed at the end !!!
