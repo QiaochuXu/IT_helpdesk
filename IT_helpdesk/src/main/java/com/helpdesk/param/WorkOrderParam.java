@@ -6,22 +6,22 @@ import lombok.Data;
 @Data
 public class WorkOrderParam {
     /**
-     * 分页 page size
+     * page size
      */
     private int ps;
 
     /**
-     * 分页 page number
+     * page number
      */
     private int pn;
 
     /**
-     * 用户查询 query
+     * query
      */
     private Integer userId;
 
     /**
-     * 问题 request
+     * request
      */
     private String questions;
 

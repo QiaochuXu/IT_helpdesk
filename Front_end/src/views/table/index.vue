@@ -38,7 +38,6 @@ export default {
     return {
       dataForm: {
       },
-      // 设置属性
       mixinViewModuleOptions: {
         createdIsNeed: true,
         getDataListURL: '/api/user/page',
@@ -107,13 +106,13 @@ export default {
         this.dataListLoading = false
       })
     },
-    // 分页, 每页条数 ps
+    // ps
     pageSizeChangeHandle(val) {
       this.page = 1
       this.limit = val
       this.query()
     },
-    // 分页, 当前页 pn
+    // pn
     pageCurrentChangeHandle(val) {
       this.page = val
       this.query()

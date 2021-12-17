@@ -16,13 +16,13 @@ public class BaseResponseUtil<T>  extends Object{
     private Map<String, Object> jo;
 
     /**
-     * 请求成功
+     *
 	 * Succeed!
      */
     public static final int SUCCESS = 20000;
 
     /**
-     * 请求异常
+     *
 	 * Failed!
      */
     public static final int FAILED = -1;

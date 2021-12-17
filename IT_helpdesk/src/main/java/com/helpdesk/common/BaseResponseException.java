@@ -8,7 +8,7 @@ package com.helpdesk.common;
 
 
 /**
- * 自定义异常类
+ * @author xuqiaochu
  */
 public class BaseResponseException extends RuntimeException {
     private int code;

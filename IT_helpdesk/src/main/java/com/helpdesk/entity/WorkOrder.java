@@ -19,61 +19,61 @@ public class WorkOrder {
     private Long id;
 
     /**
-     * 创建时间 create time
+     * create time
      */
     private String createTime;
 
 
     /**
-     * 状态 status：unsolved; open; closed; pending; spam; deleted
+     * status：unsolved; open; closed; pending; spam; deleted
      */
     private Integer workStatus;
 
 
     /**
-     * 标签id tagID
+     * tagID
      */
     private Integer tagId;
 
 
     /**
-     * 用户id userID
+     * userID
      */
     private Integer userId;
 
 
     /**
-     * 优先级 priority
+     * priority
      */
     private Integer priority;
 
 
     /**
-     * 问题 request
+     * request
      */
     @TableField(jdbcType = JdbcType.VARCHAR)
     private String questions;
 
 
     /**
-     * 描述 response
+     * response
      */
     private String content;
 
     /**
-     * 标签名称 tag name
+     * tag name
      */
     @TableField(exist = false)
     private String tagName;
 
     /**
-     * 用户名称 username
+     * username
      */
     @TableField(exist = false)
     private String userName;
 
     /**
-     * 部门id orgID
+     * orgID
      */
     @TableField(exist = false)
     private Long orgId;

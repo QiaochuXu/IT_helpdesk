@@ -18,14 +18,14 @@ public class ViewWork {
 
 
     /**
-     * 工单id workorderID
+     * workorderID
      */
     @ApiModelProperty("work_order_id")
     private Long workId;
 
 
     /**
-     * 视图id viewID
+     * viewID
      */
     @ApiModelProperty("view_id")
     private Long viewId;

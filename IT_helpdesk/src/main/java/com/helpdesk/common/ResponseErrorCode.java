@@ -3,7 +3,7 @@ package com.helpdesk.common;
 import org.springframework.http.HttpStatus;
 
 /**
- * 自定义错误码
+ *
  * Customised error codes
  */
 public enum ResponseErrorCode {
