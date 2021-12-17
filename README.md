@@ -1,4 +1,4 @@
-# iHelpdesk: An Application for Managing IT Support Requests
+# iHelpdesk: IT support requests management application
 
 This project has developed an IT Helpdesk system, to help universities standardize and efficiently handle the large number of IT support requests, improve efficiency and reduce manpower consumption. 
 
